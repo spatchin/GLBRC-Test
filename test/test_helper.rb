@@ -7,13 +7,4 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
-  setup do
-
-  end
-
-  teardown do
-  	User.destroy_all
-  	App.destroy_all
-  	UserApp.destroy_all
-  end
 end
