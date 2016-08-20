@@ -20,6 +20,8 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    @user = User.find(params[:id])
+    @apps = App.all
   end
 
   # POST /users
@@ -40,17 +42,15 @@ class UsersController < ApplicationController
   end
 
   # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
+    @user = User.find(params[:id])
+
+    # Update user's apps
+    @apps = App.find(params[:app_ids])
+    @user.apps.destroy_all
+    @apps.each { |app| @user.add_app(app.name) }
+
+    redirect_to apps_path, notice: 'User was successfully updated.'
   end
 
   # DELETE /users/1
@@ -71,6 +71,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:login, :password)
+      params.require(:user).permit(:login, :password, app_ids: [])
     end
 end

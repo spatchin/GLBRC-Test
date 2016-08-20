@@ -12,4 +12,20 @@ class User < ActiveRecord::Base
 	def add_default_apps
 		App.all.each { |a| self.apps << a if a.status }
 	end
+
+	def add_app(app_name)
+		return -1 if app_name.nil?
+		app = App.where(name: app_name).first
+		return -1 if app.nil? || self.apps.include?(app)
+		self.apps << app
+		0
+	end
+
+	def remove_app(app_name)
+		return -1 if app_name.nil?
+		app = App.where(name: app_name).first
+		return -1 if app.nil? || !self.app.include?(app)
+		self.apps.destroy(app)
+		0
+	end
 end

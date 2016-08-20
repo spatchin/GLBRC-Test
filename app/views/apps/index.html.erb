@@ -5,7 +5,6 @@
 <table>
   <tr>
   <% @apps.each_with_index do |app| %>
-  <td>
     <table>
       <thead>
         <tr>
@@ -24,8 +23,12 @@
         </tr>
       </tbody>
     </table>
-  </td>
   <% end %>
-  </tr>
 </table>
+
+<!-- links for editing association -->
+<% if current_user %>
+  <%= link_to 'Edit apps', edit_user_path(current_user) %>
+<% end %>
+
 <br>

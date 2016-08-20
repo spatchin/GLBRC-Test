@@ -11,15 +11,26 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :login %><br>
-    <%= f.text_field :login %>
-  </div>
-  <div class="field">
-    <%= f.label :password %><br>
-    <%= f.text_field :password %>
-  </div>
+  <table>
+    <tr>
+      <th></th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Color</th>
+      <th>Status</th>
+    </tr>
+    <% for app in @apps %>
+      <tr>
+        <td><%= check_box_tag "app_ids[]", app.id, checked = @user.apps.include?(app) %></td>
+        <td><%=h app.name %></td>
+        <td><%=h app.description %></td>
+        <td><%=h app.color %></td>
+        <td><%=h app.status %></td>
+      </tr>
+    <% end %>
+
+  </table>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Add checked" %>
   </div>
 <% end %>
