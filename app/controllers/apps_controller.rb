@@ -4,7 +4,12 @@ class AppsController < ApplicationController
   # GET /apps
   # GET /apps.json
   def index
-    @apps = App.all
+    @user = User.find(current_user) if current_user
+    if @user
+      @apps = @user.apps.all
+    else
+      @apps = App.all
+    end
   end
 
   # GET /apps/1

@@ -24,6 +24,16 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to user_path(assigns(:user))
   end
 
+  test "should create user with apps" do
+    app = App.create(name: 'app1', description: 'application 1', color: 'Red', status: true)
+    assert_difference('User.count') do
+      post :create, user: { login: @user.login, password: @user.password }
+    end
+
+    assert_redirected_to user_path(assigns(:user))
+    assert_equal 1, User.last.apps.length
+  end
+
   test "should show user" do
     get :show, id: @user
     assert_response :success
