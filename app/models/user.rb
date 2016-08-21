@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
 		app = App.where(name: app_name).first
 		return -1 if app.nil? || self.apps.include?(app)
 		self.apps << app
+		self.user_apps.last.update(name: app.name, description: app.description)
 		0
 	end
 
