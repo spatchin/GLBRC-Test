@@ -35,7 +35,7 @@ class UsersController < ApplicationController
 
     # Update user's apps
     @apps = App.find(params[:app_ids])
-    @user.apps.destroy_all
+    @user.apps.each { |app| @user.remove_app(app.name) }
     @apps.each { |app| @user.add_app(app.name) }
 
     redirect_to apps_path, notice: 'User was successfully updated.'

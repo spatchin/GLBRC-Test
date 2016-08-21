@@ -1,30 +1,16 @@
-<p id="notice"><%= notice %></p>
-
 <h1><%= current_user ? 'Your Apps' : 'Default Apps' %></h1>
 
-<table>
-  <tr>
-  <% @apps.each_with_index do |app| %>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Color</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><%= app.name %></td>
-          <td><%= app.description %></td>
-          <td><%= app.color %></td>
-          <td><%= app.status %></td>
-        </tr>
-      </tbody>
-    </table>
-  <% end %>
-</table>
+<% @apps.each_slice(3) do |apps| %>
+  <div class="row">
+    <% apps.each do |app| %>
+      <div class="col-sm-4">
+        <%= raw('<span class="glyphicon glyphicon-' + @shapes[app.color] + ' aria-hidden="true"></span>') %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<br>
 
 <!-- links for editing association -->
 <% if current_user %>

@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
 	def remove_app(app_name)
 		return -1 if app_name.nil?
 		app = App.where(name: app_name).first
-		return -1 if app.nil? || !self.app.include?(app)
+		return -1 if app.nil? || !self.apps.include?(app)
 		self.apps.destroy(app)
 		0
 	end

@@ -3,6 +3,9 @@ class AppsController < ApplicationController
 
   def index
     @user = User.find(current_user) if current_user
+    @shapes = { 'Red' => 'star', 'Blue' => 'heart',
+                'Yellow' => 'triangle-top', 'Green' => 'stop',
+                'Purple' => 'ok' }
     if @user
       @apps = @user.apps.all
     else
@@ -12,7 +15,6 @@ class AppsController < ApplicationController
   end
 
   def show
-    @app = App.find(params[:id])
   end
 
   def new
@@ -42,7 +44,7 @@ class AppsController < ApplicationController
 
   def destroy
     @app.destroy
-      redirect_to apps_url, notice: 'App was successfully destroyed.'
+    redirect_to apps_url, notice: 'App was successfully destroyed.'
   end
 
   private

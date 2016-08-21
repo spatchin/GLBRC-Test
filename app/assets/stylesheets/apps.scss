@@ -1,3 +1,47 @@
 // Place all the styles related to the Apps controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// Colors
+$r: #FF0000;
+$b: #2963BD;
+$y: #FFD700;
+$g: #429032;
+$p: #EE82EE;
+
+
+// Styling
+.outline { 
+	padding: 10px;
+	margin: 10px;
+	background: rgba(black,.2);
+	border-radius: 2px;
+	position: relative;
+  div { margin: auto; }   
+}
+
+.glyphicon.glyphicon-star, .glyphicon.glyphicon-heart,
+.glyphicon.glyphicon-triangle-top, .glyphicon.glyphicon-stop,
+.glyphicon.glyphicon-ok,{
+	font-size: 50px;
+}
+
+.glyphicon.glyphicon-star {
+	color: $r;
+}
+
+.glyphicon.glyphicon-heart {
+	color: $b;
+}
+
+.glyphicon.glyphicon-triangle-top {
+	color: $y;
+}
+
+.glyphicon.glyphicon-stop {
+	color: $g;
+}
+
+.glyphicon.glyphicon-ok {
+	color: $p;
+}

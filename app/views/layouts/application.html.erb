@@ -27,7 +27,12 @@
 		</nav>
   </header>
 	
-	<%= yield %>
+
+	<div class="container">
+		<p id="notice"><%= notice %></p>
+		<p id="danger"><%= alert %></p>
+		<%= yield %>
+	</div>
 
 	<footer>
 	</footer>

@@ -14,6 +14,7 @@
   <table>
     <tr>
       <th></th>
+      <th></th>
       <th>Name</th>
       <th>Description</th>
       <th>Color</th>
@@ -22,6 +23,11 @@
     <% for app in @apps %>
       <tr>
         <td><%= check_box_tag "app_ids[]", app.id, checked = @user.apps.include?(app) %></td>
+        <%= raw '<td><span class="glyphicon glyphicon-star" aria-hidden="true"></span></td>' if app.name == 'App1' %>
+         <%= raw '<td><div class="glyphicon glyphicon-heart"></div></td>' if app.name == 'App2' %>
+        <%= raw '<td><div class="glyphicon glyphicon-triangle-top"></div></td>' if app.name == 'App3' %>
+        <%= raw '<td><div class="glyphicon glyphicon-stop"></div></td>' if app.name == 'App4' %>
+        <%= raw '<td><div class="glyphicon glyphicon-ok"></div></td>' if app.name == 'App5' %>
         <td><%=h app.name %></td>
         <td><%=h app.description %></td>
         <td><%=h app.color %></td>
@@ -31,6 +37,6 @@
 
   </table>
   <div class="actions">
-    <%= f.submit "Add checked" %>
+    <%= f.submit "Change" %>
   </div>
 <% end %>
