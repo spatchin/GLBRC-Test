@@ -7,7 +7,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
   end
 
   def new
@@ -15,7 +14,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
     @apps = App.all
   end
 
@@ -31,14 +29,11 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
-
-    # Update user's apps
     @apps = App.find(params[:app_ids])
     @user.apps.each { |app| @user.remove_app(app.name) }
     @apps.each { |app| @user.add_app(app.name) }
 
-    redirect_to apps_path, notice: 'User was successfully updated.'
+    redirect_to '/', notice: 'Apps were successfully updated.'
   end
 
   def destroy

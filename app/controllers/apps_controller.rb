@@ -2,7 +2,7 @@ class AppsController < ApplicationController
   before_action :set_app, only: [:show, :edit, :update, :destroy]
 
   def index
-    @user = User.find(current_user) if current_user
+    @user = User.find(current_user.id) if current_user
     @shapes = { 'Red' => 'star', 'Blue' => 'heart',
                 'Yellow' => 'triangle-top', 'Green' => 'stop',
                 'Purple' => 'ok' }

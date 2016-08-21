@@ -1,20 +1,20 @@
 <h1><%= current_user ? 'Your Apps' : 'Default Apps' %></h1>
-
 <% @apps.each_slice(3) do |apps| %>
   <div class="row">
     <% apps.each do |app| %>
       <div class="col-sm-4">
-        <%= raw('<span class="glyphicon glyphicon-' + @shapes[app.color] + ' aria-hidden="true"></span>') %>
+        <div class="outline">
+          <p class="text-center"><strong><%=h app.name %></strong></p>
+          <%= raw('<a href="#"><span class="glyphicon glyphicon-' + @shapes[app.color] + ' aria-hidden="true"></span></a>') %>
+          <p class="text-center"><small><%=h app.description %></small></p>
+        </div>
       </div>
     <% end %>
   </div>
 <% end %>
-
 <br>
-
 <!-- links for editing association -->
 <% if current_user %>
   <%= link_to 'Edit apps', edit_user_path(current_user) %>
 <% end %>
-
 <br>
