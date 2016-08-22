@@ -7,13 +7,15 @@ class SessionsControllerTest < ActionController::TestCase
   end
 
   test "should get create" do
-    get :create
-    assert_response :success
+    user = User.create(login: 'user1', password_digest: BCrypt::Password.create('glbrcpass'))
+    get :create, session: { login: 'user1', password: 'glbrcpass' }
+    assert_redirected_to '/'
+    user.destroy
   end
 
   test "should get destroy" do
     get :destroy
-    assert_response :success
+    assert_redirected_to '/'
   end
 
 end

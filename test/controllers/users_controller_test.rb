@@ -16,24 +16,6 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create user" do
-    assert_difference('User.count') do
-      post :create, user: { login: @user.login, password: @user.password }
-    end
-
-    assert_redirected_to user_path(assigns(:user))
-  end
-
-  test "should create user with apps" do
-    app = App.create(name: 'app1', description: 'application 1', color: 'Red', status: true)
-    assert_difference('User.count') do
-      post :create, user: { login: @user.login, password: @user.password }
-    end
-
-    assert_redirected_to user_path(assigns(:user))
-    assert_equal 1, User.last.apps.length
-  end
-
   test "should show user" do
     get :show, id: @user
     assert_response :success
@@ -42,11 +24,6 @@ class UsersControllerTest < ActionController::TestCase
   test "should get edit" do
     get :edit, id: @user
     assert_response :success
-  end
-
-  test "should update user" do
-    patch :update, id: @user, user: { login: @user.login, password: @user.password }
-    assert_redirected_to user_path(assigns(:user))
   end
 
   test "should destroy user" do
