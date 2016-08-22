@@ -29,10 +29,13 @@ class UsersController < ApplicationController
   end
 
   def update
-    @apps = App.find(params[:app_ids])
-    @user.apps.each { |app| @user.remove_app(app.name) }
-    @apps.each { |app| @user.add_app(app.name) }
-
+    if params[:app_ids]
+      @apps = App.find(params[:app_ids])
+      @user.apps.each { |app| @user.remove_app(app.name) unless @apps.include?(app) }
+      @apps.each { |app| @user.add_app(app.name) unless @user.apps.include?(app) }
+    else
+      @user.apps.destroy_all
+    end
     redirect_to '/', notice: 'Apps were successfully updated.'
   end
 
